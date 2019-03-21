@@ -1,25 +1,24 @@
-
 <template>
   <div>
     <div class="col-md-10">
       <strong>{{ data.title }}</strong>
-      <br/>
+      <br />
       {{ data.displayValue }}
-    </div> 
-    <div class="col-md-2"><strong>Modifier:</strong> {{ modifier() }}</div>
+    </div>
+    <div class="col-md-2"><Modifier :data="data.value" /></div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import Modifier from "@/components/Modifier.vue";
 
-@Component
-export default class ValueResult extends Vue {
-  @Prop() data : any;
-  modifier = () : string => {
-    if (this.data.value == 0) return "0";
-    if (this.data.value < 0) return this.data.value.toString();
-    return "+" + this.data.value;
+@Component({
+  components: {
+    Modifier
   }
+})
+export default class ValueResult extends Vue {
+  @Prop() data: any;
 }
 </script>
